@@ -1,0 +1,107 @@
+import package:flutter/material.dart';
+
+void main() {
+
+runApp(const StudentApp());
+
+}
+
+class StudentApp extends Stateless Widget {
+
+const StudentApp((super.key});
+
+@override
+
+Widget build (BuildContext context) { return MaterialApp( debugShowCheckedModeBanner: false, title: 'Student Record Management', home: const StudentHomePage(), ); }
+
+}
+
+class StudentHomePage extends StatefulWidget { const StudentHomePage({super.key));
+
+@override
+
+State StudentHomePage>createState() =>_Student HomePageState();
+
+class StudentHomePageState extends State StudentHomePage>(
+
+final TextEditingController nameController = TextEditingController();
+
+final TextEditingController rollController = TextEditingController();
+
+final TextEditing Controller deptController = TextEditingController();
+
+final List<Map<String, String>>students = [];
+
+void addStudent() {
+
+if (nameController.text.isNotEmpty && rollController.text.isNotEmpty && deptController.text.isNotEmpty) ( setState(() { students.add({ 'name': name Controller.text, 'roll': roll Controller.text, 'dept': deptController.text, }); });
+nameController.clear();
+
+roll Controller.clear();
+
+deptController.clear();
+
+@override
+
+Widget build (BuildContext context) ( appBar: AppBar( title:const Text('Student Record Management'), ).
+
+return Scaffold(
+
+body: Padding(
+
+padding: const EdgeInsets.all(16.0),
+
+child:Column(
+
+children: [
+
+TextField( controller.nameController, decoration: const InputDecoration( labelText: 'Student Name', ).
+
+).
+
+TextField( controller.rollController, decoration: const InputDecoration( labelText: 'Roll Number', ).
+
+), TextField( controller.deptController, decoration: const InputDecoration( labelText: 'Department', ),
+
+). const SizedBox(height: 10), ElevatedButton( onPressed: addStudent, child: const Text(Add Student'),
+),
+
+const SizedBox(height: 10),
+
+Expanded(
+
+child: ListView.builder(
+
+itemCount: students.length,
+
+itemBuilder: (context, index) {
+
+return Card(
+
+child:ListTile(
+
+title: Text(students[index]['name']!),
+
+subtitle: Text(
+
+).
+
+);
+
+'Roll: $(students[index]['roll']} | Dept: ${students[index]['dept'])',
+
+},
+
+),
+
+),
+
+),
+
+),
+
+),
+
+);
+
+}
