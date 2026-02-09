@@ -1,0 +1,82 @@
+import package flutter/material.dart,
+
+void main()
+
+runApp(const MyApp())
+
+class MyAppextends Stateless Widget
+
+const MyApp((super key)),
+
+@override
+
+Widget build (BuildContext context){
+
+retum MaterialApp
+
+debugSnowCheckedModeBanner false,
+
+title: 'Counter App.
+
+theme: ThemeData
+
+primarySwatch. Colors.blue. ).
+
+home const CounterPage(),
+
+class Counter Page extends StatefulWidget
+
+const CounterPage((super.key));
+
+@override
+
+State CounterPage>createState() CounterPageState();
+
+class Counter PageState extends State CounterPage>
+
+int counter-0,
+
+void_incrementCounter(){
+
+setState(
+
+_counter++;
+
+@override
+
+Widget build (BuildContext context)(
+
+retum Scaffold
+
+title: const Text(Flutter Counter App)
+
+),
+
+appBar: AppBar
+title. const Text('Flutter Counter App)
+
+),
+
+body Center(
+
+$counter
+
+
+child Text( style: const TextStyle( fontSize: 50,
+
+font Weight: FontWeight.bold,),
+
+
+
+floating ActionButton Floating ActionButton
+
+onPressed: increment Counter,
+
+tooltip:'Increment',
+
+child consticon(Icons.arrow_forward),
+),
+);
+}
+}
+
