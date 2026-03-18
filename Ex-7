@@ -1,0 +1,130 @@
+import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';
+void main() {
+runApp(TravelGuideApp());
+}
+class TravelGuideApp extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+title: "Welcome TO TRAVEL GUIDE APP",
+home: HomeScreen(),
+);
+}
+}
+Home_screen.dart
+import 'package:flutter/material.dart';
+import '../widgets/app_bar.dart';
+import '../widgets/drawer.dart';
+import '../widgets/bottom_navigation_bar.dart';
+class HomeScreen extends StatefulWidget {
+@override
+_HomeScreenState createState() => _HomeScreenState()
+}
+class _HomeScreenState extends State<HomeScreen> {
+int _selectedIndex = 0;
+final List<Widget> pages = [
+Center(child: Text("WELCOME TO HOME PAGE")),
+Center(child: Text("WELCOME TO PLACES PAGE")),
+Center(child: Text("WELCOME TO PROFILE PAGE")),
+];
+void onItemTapped(int index) {
+setState(() {
+_selectedIndex = index;
+});
+}
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: CustomAppBar(),
+drawer: CustomDrawer(),
+body: pages[_selectedIndex],
+bottomNavigationBar: CustomBottomNavBar(
+currentIndex: _selectedIndex,
+onTap: onItemTapped,
+),
+);
+}
+
+}
+import 'package:flutter/material.dart';
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+@override
+Widget build(BuildContext context) {
+return AppBar(
+title: Text("Travel Guide"),
+backgroundColor: Colors.blue,
+centerTitle: true,
+);
+}
+@override
+Size get preferredSize => Size.fromHeight(kToolbarHeight);
+}
+drawer.dart
+import 'package:flutter/material.dart';
+class CustomDrawer extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return Drawer(
+child: ListView(
+children: [
+DrawerHeader(
+decoration: BoxDecoration(color: Colors.blue),
+child: Text(
+"Travel Guide Menu",
+style: TextStyle(color: Colors.white, fontSize: 20)
+ListTile(
+leading: Icon(Icons.home),
+title: Text("Home"),
+onTap: () {
+Navigator.pop(context);
+},
+),
+ListTile(
+leading: Icon(Icons.place),
+title: Text("Places"),
+onTap: () {
+Navigator.pop(context);
+},
+),
+ListTile(
+leading: Icon(Icons.person),
+title: Text("Profile"),
+onTap: () {
+Navigator.pop(context);
+},
+),
+],
+),
+);
+}
+import 'package:flutter/material.dart';
+class CustomBottomNavBar extends StatelessWidget {
+final int currentIndex;
+final Function(int) onTap;
+CustomBottomNavBar({required this.currentIndex, required this.onTap});
+@override
+Widget build(BuildContext context) {
+return BottomNavigationBar(
+currentIndex: currentIndex,
+onTap: onTap,
+items: const [
+BottomNavigationBarItem(
+icon: Icon(Icons.home),
+label: "Home",
+),
+BottomNavigationBarItem(
+icon: Icon(Icons.place),
+label: "Places",
+),
+BottomNavigationBarItem(
+icon: Icon(Icons.person),
+label: "Profile",
+),
+],
+);
+}
+}
+
+
